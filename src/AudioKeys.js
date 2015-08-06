@@ -7,11 +7,11 @@ function AudioKeys(options) {
   // e.g. self._listeners.down = [fn1, fn2, ... ]
   self._listeners = {};
 
-  // bind events
-  // self.bind();
+  // bind DOM events
+  self._bind();
 }
 
 // Play well with require so that we can run a test suite and use browserify.
-if(module) {
+if(typeof module !== 'undefined') {
   module.exports = AudioKeys;
 }
