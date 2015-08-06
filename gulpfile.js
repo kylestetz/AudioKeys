@@ -6,7 +6,9 @@ gulp.task('build', function() {
   return gulp.src([
       './src/AudioKeys.js',
       './src/AudioKeys.state.js',
-      './src/AudioKeys.events.js'
+      './src/AudioKeys.events.js',
+      './src/AudioKeys.mapping.js',
+      './src/AudioKeys.buffer.js'
     ])
     .pipe(sourcemaps.init())
     .pipe(concat('audiokeys.js'))
