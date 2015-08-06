@@ -1,6 +1,6 @@
 # AudioKeys
 
-### Under Development
+### In Development
 
 This doesn't work yet, but it will soon! Here's what it will do:
 
