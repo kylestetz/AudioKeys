@@ -1,3 +1,11 @@
+// ================================================================
+// Event Handling
+// ================================================================
+
+// AudioKeys has a very simple event handling system. Internally
+// we'll call self._trigger('down', argument) when we want to fire
+// an event for the user.
+
 AudioKeys.prototype.down = function(fn) {
   var self = this;
 
@@ -12,8 +20,17 @@ AudioKeys.prototype.up = function(fn) {
   self._listeners.up = (self._listeners.up || []).concat(fn);
 };
 
-AudioKeys.prototype.trigger = function(action /* args */) {
+AudioKeys.prototype._trigger = function(action /* args */) {
   var self = this;
 
-  //
+  // if we have any listeners by this name ...
+  if(self._listeners[action] && self._listeners[action].length) {
+    // grab the arguments to pass to the listeners ...
+    var args = Array.prototype.slice.call(arguments);
+    args.splice(0, 1);
+    // and call them!
+    self._listeners.forEach( function(fn) {
+      fn(args);
+    });
+  }
 };
