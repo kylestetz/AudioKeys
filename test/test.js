@@ -2,3 +2,4 @@
 
 require('./test.state');
 require('./test.events');
+require('./test.mapping');

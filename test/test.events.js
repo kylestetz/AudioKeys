@@ -3,7 +3,7 @@ var AudioKeys = require('../dist/audiokeys.js');
 
 describe('Events', function() {
 
-  describe('methods', function(){
+  describe('listeners and related methods', function(){
     it('should have `up` and `down` and `_trigger` methods', function() {
       var keyboard = new AudioKeys();
 
