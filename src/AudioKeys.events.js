@@ -1,5 +1,5 @@
 // ================================================================
-// Event Handling
+// Event Listeners
 // ================================================================
 
 // AudioKeys has a very simple event handling system. Internally
@@ -32,5 +32,18 @@ AudioKeys.prototype._trigger = function(action /* args */) {
     self._listeners[action].forEach( function(fn) {
       fn.apply(self, args);
     });
+  }
+};
+
+// ================================================================
+// DOM Bindings
+// ================================================================
+
+AudioKeys.prototype._bind = function() {
+  var self = this;
+
+  if(typeof window !== 'undefined' && window.document) {
+    window.document.addEventListener('keydown', self._addKey);
+    window.document.addEventListener('keyup', self._removeKey);
   }
 };
