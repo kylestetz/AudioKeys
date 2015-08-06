@@ -6,12 +6,13 @@ AudioKeys provides configurable polyphony— if you're making a monophonic synth
 
 Choose from two common key layouts, one of which can support optional octave shifting and velocity selecting.
 
-```
+```javascript
 var keyboard = new AudioKeys({
   polyphony: 1,
   behavior: 'last',
   rows: 1,
-  octaves: true
+  octaves: true,
+  rootNote: 48
 });
 
 // a key was pressed
