@@ -30,7 +30,7 @@ AudioKeys.prototype._trigger = function(action /* args */) {
     args.splice(0, 1);
     // and call them!
     self._listeners[action].forEach( function(fn) {
-      fn(args);
+      fn.apply(self, args);
     });
   }
 };

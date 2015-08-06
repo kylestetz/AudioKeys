@@ -49,6 +49,17 @@ describe('Events', function() {
 
       assert.equal(flag, true);
     });
+
+    it('should pass arguments through _trigger()', function() {
+      var keyboard = new AudioKeys();
+
+      function verify() {
+        assert.equal(arguments.length, 2);
+      }
+
+      keyboard.down(verify);
+      keyboard._trigger('down', true, true);
+    });
   });
 
 });

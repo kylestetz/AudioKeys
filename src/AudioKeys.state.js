@@ -13,7 +13,7 @@ AudioKeys.prototype._setState = function(options) {
     polyphony: 4,
     rows: 1,
     octaves: true,
-    behavior: 'last',
+    priority: 'last',
     rootNote: 48
   });
 

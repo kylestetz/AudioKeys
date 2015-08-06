@@ -24,9 +24,9 @@ describe('State', function() {
       assert.equal(keyboard._state.octaves, true);
     });
 
-    it('should have a default behavior of `last`', function() {
+    it('should have a default priority of `last`', function() {
       var keyboard = new AudioKeys();
-      assert.equal(keyboard._state.behavior, 'last');
+      assert.equal(keyboard._state.priority, 'last');
     });
 
     it('should have a default rootNote of 48', function() {
@@ -54,8 +54,8 @@ describe('State', function() {
       keyboard.set('octaves', false);
       assert.equal(keyboard._state.octaves, false);
 
-      keyboard.set('behavior', 'first');
-      assert.equal(keyboard._state.behavior, 'first');
+      keyboard.set('priority', 'first');
+      assert.equal(keyboard._state.priority, 'first');
 
       keyboard.set('rootNote', 60);
       assert.equal(keyboard._state.rootNote, 60);
@@ -68,14 +68,14 @@ describe('State', function() {
         polyphony: 1,
         rows: 2,
         octaves: false,
-        behavior: 'first',
+        priority: 'first',
         rootNote: 60
       });
 
       assert.equal(keyboard._state.polyphony, 1);
       assert.equal(keyboard._state.rows, 2);
       assert.equal(keyboard._state.octaves, false);
-      assert.equal(keyboard._state.behavior, 'first');
+      assert.equal(keyboard._state.priority, 'first');
       assert.equal(keyboard._state.rootNote, 60);
     });
 
@@ -85,7 +85,7 @@ describe('State', function() {
       assert.equal(keyboard.get('polyphony'), 4);
       assert.equal(keyboard.get('rows'), 1);
       assert.equal(keyboard.get('octaves'), true);
-      assert.equal(keyboard.get('behavior'), 'last');
+      assert.equal(keyboard.get('priority'), 'last');
       assert.equal(keyboard.get('rootNote'), 48);
     });
 
@@ -94,14 +94,14 @@ describe('State', function() {
         polyphony: 1,
         rows: 2,
         octaves: false,
-        behavior: 'first',
+        priority: 'first',
         rootNote: 60
       });
 
       assert.equal(keyboard._state.polyphony, 1);
       assert.equal(keyboard._state.rows, 2);
       assert.equal(keyboard._state.octaves, false);
-      assert.equal(keyboard._state.behavior, 'first');
+      assert.equal(keyboard._state.priority, 'first');
       assert.equal(keyboard._state.rootNote, 60);
     });
   });
