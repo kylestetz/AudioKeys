@@ -3,42 +3,54 @@ var AudioKeys = require('../dist/audiokeys.js');
 
 describe('Mapping', function() {
 
-  it('should have a mapping for the `1 row` keyboard', function() {
-    var keyboard = new AudioKeys();
+  describe('rows', function() {
+    it('should have a mapping for the `1 row` keyboard', function() {
+      var keyboard = new AudioKeys();
 
-    keyboard.set('rows', 1);
-    assert.notStrictEqual(keyboard._keyMap[1], undefined);
+      keyboard.set('rows', 1);
+      assert.notStrictEqual(keyboard._keyMap[1], undefined);
+    });
+
+    it('shoul have a mapping for the `2 row` keyboard', function() {
+      var keyboard = new AudioKeys();
+
+      keyboard.set('rows', 2);
+      assert.notStrictEqual(keyboard._keyMap[2], undefined);
+    });
   });
 
-  it('shoul have a mapping for the `2 row` keyboard', function() {
-    var keyboard = new AudioKeys();
+  describe('methods', function() {
+    it('should `_map` the corresponding MIDI note given a keyCode', function() {
+      var keyboard = new AudioKeys();
 
-    keyboard.set('rows', 2);
-    assert.notStrictEqual(keyboard._keyMap[2], undefined);
-  });
+      keyboard.set('rows', 1);
+      // "a" (65) maps to 60
+      assert.equal(keyboard._map(65), 60);
 
-  it('should _map the corresponding MIDI note given a keyCode', function() {
-    var keyboard = new AudioKeys();
+      keyboard.set('rows', 2);
+      // "z" (90) maps to 60
+      assert.equal(keyboard._map(90), 60);
+    });
 
-    keyboard.set('rows', 1);
-    // "a" (65) maps to 60
-    assert.equal(keyboard._map(65), 60);
+    it('should determine if a keyCode corresponds to a note using `_isNote`', function() {
+      var keyboard = new AudioKeys();
 
-    keyboard.set('rows', 2);
-    // "z" (90) maps to 60
-    assert.equal(keyboard._map(90), 60);
-  });
+      keyboard.set('rows', 1);
+      // "a" (65) maps to 60
+      assert.equal(keyboard._isNote(65), true);
 
-  it('should determine if a keyCode corresponds to a note or not', function() {
-    var keyboard = new AudioKeys();
+      keyboard.set('rows', 2);
+      // "a" should not be a note now
+      assert.equal(keyboard._isNote(65), false);
+    });
 
-    keyboard.set('rows', 1);
-    // "a" (65) maps to 60
-    assert.equal(keyboard._isNote(65), true);
+    it('should return a note offset by the rootNote', function() {
+      var keyboard = new AudioKeys();
 
-    keyboard.set('rows', 2);
-    // "a" should not be a note now
-    assert.equal(keyboard._isNote(65), false);
+      keyboard.set('rootNote', 72);
+      keyboard.set('rows', 1);
+      assert.equal(keyboard._map(65), 72);
+    });
   });
 
 });
