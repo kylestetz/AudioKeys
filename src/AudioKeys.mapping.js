@@ -10,6 +10,10 @@ AudioKeys.prototype._isNote = function(keyCode) {
   return !!self._keyMap[self._state.rows][keyCode];
 };
 
+AudioKeys.prototype._toFrequency = function(note) {
+  return ( Math.pow(2, ( note-69 ) / 12) ) * 440.0;
+};
+
 // the keys correspond to `rows`, so `_keyMap[rows]` should retrieve
 // that particular mapping.
 AudioKeys.prototype._keyMap = {

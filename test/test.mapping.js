@@ -11,7 +11,7 @@ describe('Mapping', function() {
       assert.notStrictEqual(keyboard._keyMap[1], undefined);
     });
 
-    it('shoul have a mapping for the `2 row` keyboard', function() {
+    it('should have a mapping for the `2 row` keyboard', function() {
       var keyboard = new AudioKeys();
 
       keyboard.set('rows', 2);
@@ -50,6 +50,12 @@ describe('Mapping', function() {
       keyboard.set('rootNote', 72);
       keyboard.set('rows', 1);
       assert.equal(keyboard._map(65), 72);
+    });
+
+    it('should convert midi notes to frequency in Hz', function() {
+      var keyboard = new AudioKeys();
+
+      assert.equal(keyboard._toFrequency(69), 440);
     });
   });
 
