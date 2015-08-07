@@ -1,4 +1,3 @@
-
 // The process is:
 
 // key press
@@ -11,13 +10,38 @@
 AudioKeys.prototype._addKey = function(e) {
   var self = this;
   // if the keyCode is one that can be mapped and isn't
-  // already pressed...
-  // if(self._isNote(e.keyCode) && !self._isActive(e.keyCode)) {
-  //   self._pushNote( self._map(e.keyCode) );
-  // }
+  // already pressed, add it to the key object.
+  if(self._isNote(e.keyCode) && !self._isPressed(e.keyCode)) {
+    var newKey = {
+      note: self._map(e.keyCode),
+      keyCode: e.keyCode
+    };
+    // add the newKey to the list of keys
+    self._keys = (self._keys || []).concat(newKey);
+    // reevaluate the active notes based on our priority rules.
+    // give it the new note to use if there is an event to trigger.
+    self._prioritize(newKey);
+  }
 };
 
 AudioKeys.prototype._removeKey = function(e) {
   var self = this;
+  // if the keyCode is active, remove it from the key object.
+  if(self._isPressed(e.keyCode)) {
+    var keyToRemove;
+    for(var i = 0; i < self._keys.length; i++) {
+      if(self._keys[i].keyCode === e.keyCode) {
+        keyToRemove = self.keys[i];
+      }
+    }
+
+    if(keyToRemove.isActive) {
+      // trigger an event to remove the key
+
+    }
+  }
+};
+
+AudioKeys.prototype._isPressed = function(e) {
 
 };
