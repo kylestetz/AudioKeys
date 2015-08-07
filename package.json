@@ -2,7 +2,7 @@
   "name": "audiokeys",
   "version": "0.0.1",
   "description": "A utility for creating QWERTY keyboards with support for different mono- and polyphonic behaviors.",
-  "main": "index.js",
+  "main": "dist/audiokeys.js",
   "scripts": {
     "test": "mocha test/test.js"
   },
