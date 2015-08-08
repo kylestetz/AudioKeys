@@ -10,7 +10,12 @@ describe('Buffers', function() {
 
       // simulated key event
       keyboard._addKey({ keyCode: 65 });
-      assert.deepEqual(keyboard._keys[0], { note: 60, keyCode: 65, isActive: true });
+      assert.deepEqual(keyboard._state.keys[0], {
+        note: 60,
+        keyCode: 65,
+        frequency: keyboard._toFrequency(60),
+        isActive: true
+      });
     });
 
     it('should remove a note from _keys using _removeKey', function() {
@@ -18,9 +23,9 @@ describe('Buffers', function() {
 
       // simulated key event
       keyboard._addKey({ keyCode: 65 });
-      assert.equal(keyboard._keys.length, 1);
+      assert.equal(keyboard._state.keys.length, 1);
       keyboard._removeKey({ keyCode: 65 });
-      assert.strictEqual(keyboard._keys.length, 0);
+      assert.strictEqual(keyboard._state.keys.length, 0);
     });
 
     it('should verify whether or not a key is active', function() {

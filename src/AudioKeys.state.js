@@ -14,7 +14,9 @@ AudioKeys.prototype._setState = function(options) {
     rows: 1,
     octaves: true,
     priority: 'last',
-    rootNote: 48
+    rootNote: 48,
+    keys: [],
+    buffer: []
   });
 
   // ... and override them with options.
