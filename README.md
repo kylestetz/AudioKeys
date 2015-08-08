@@ -8,7 +8,7 @@ This doesn't work yet, but it will soon! Here's what it will do:
 
 Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. AudioKeys provides intelligent handling of key events, giving you key up and key down events that you can use to trigger your sounds.
 
-AudioKeys provides configurable polyphony— if you're making a monophonic synth, choose from the common note priorities "last note", "first note", "highest note", "lowest note", or "single note".
+AudioKeys provides configurable polyphony— if you're making a monophonic synth, choose from the common note priorities "last note", "first note", "highest note", or "lowest note".
 
 Choose from two common key layouts, one of which can support optional octave shifting and velocity selecting.
 
