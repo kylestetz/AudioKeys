@@ -4,3 +4,4 @@ require('./test.state');
 require('./test.events');
 require('./test.mapping');
 require('./test.buffer');
+require('./test.priority');
