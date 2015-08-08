@@ -1,23 +1,29 @@
 // _map returns the midi note for a given keyCode.
 AudioKeys.prototype._map = function(keyCode) {
-  var self = this;
-  return self._keyMap[self._state.rows][keyCode];
+  return this._keyMap[this._state.rows][keyCode] + this._offset();
+};
+
+AudioKeys.prototype._offset = function() {
+  return this._state.rootNote - this._keyMap[this._state.rows].root;
 };
 
 // _isNote determines whether a keyCode is a note or not.
 AudioKeys.prototype._isNote = function(keyCode) {
-  var self = this;
-  return !!self._keyMap[self._state.rows][keyCode];
+  return !!this._keyMap[this._state.rows][keyCode];
 };
 
+// convert a midi note to a frequency. we assume here that _map has
+// already been called (to account for a potential rootNote offset)
 AudioKeys.prototype._toFrequency = function(note) {
   return ( Math.pow(2, ( note-69 ) / 12) ) * 440.0;
 };
 
-// the keys correspond to `rows`, so `_keyMap[rows]` should retrieve
-// that particular mapping.
+// the object keys correspond to `rows`, so `_keyMap[rows]` should
+// retrieve that particular mapping.
 AudioKeys.prototype._keyMap = {
   1: {
+    root: 60,
+    // starting with the 'a' key
     65:  60,
     87:  61,
     83:  62,
@@ -38,6 +44,7 @@ AudioKeys.prototype._keyMap = {
     222: 77
   },
   2: {
+    root: 60,
     // bottom row
     90:  60,
     83:  61,
