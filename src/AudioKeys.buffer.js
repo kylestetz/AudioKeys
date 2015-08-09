@@ -37,11 +37,9 @@ AudioKeys.prototype._removeKey = function(e) {
       }
     }
 
-    if(keyToRemove.isActive) {
-      // remove the key from _keys
-      self._state.keys.splice(self._state.keys.indexOf(keyToRemove), 1);
-      self._update();
-    }
+    // remove the key from _keys
+    self._state.keys.splice(self._state.keys.indexOf(keyToRemove), 1);
+    self._update();
   }
 };
 
@@ -68,6 +66,18 @@ AudioKeys.prototype._makeNote = function(keyCode) {
     note: self._map(keyCode),
     frequency: self._toFrequency( self._map(keyCode) )
   };
+};
+
+// clear any active notes
+AudioKeys.prototype.clear = function() {
+  var self = this;
+  // trigger note off for the notes in the buffer before
+  // removing them.
+  self._state.buffer.forEach( function(key) {
+    self._trigger('up', key);
+  });
+  self._state.keys = [];
+  self._state.buffer = [];
 };
 
 // ================================================================

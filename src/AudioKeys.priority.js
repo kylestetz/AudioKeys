@@ -16,9 +16,6 @@ AudioKeys.prototype._prioritize = function() {
       return key;
     });
   } else {
-
-    // i think this is where the behaviors will be run?
-
     // set all keys to inactive.
     self._state.keys = self._state.keys.map( function(key) {
       key.isActive = false;
