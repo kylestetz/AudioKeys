@@ -8,24 +8,25 @@ Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. Audio
 
 AudioKeys provides configurable polyphony— if you're making a monophonic synth, choose from the common note priorities "last note", "first note", "highest note", or "lowest note".
 
-Choose from two common key layouts, one of which will be able to support optional octave shifting and velocity selecting.
+Choose from two common key layouts, one of which supports optional octave shifting and velocity selecting.
 
 ```javascript
 var keyboard = new AudioKeys({
   polyphony: 1,
   priority: 'last',
   rows: 1,
-  // octaves: true, // not implemented yet
+  octaveControls: true,
+  velocityControls: true,
   rootNote: 48
 });
 
 // a key was pressed
-keyboard.down( function(note, e) {
+keyboard.down( function(note) {
   console.log(note);
 });
 
 // a key was released
-keyboard.up( function(note, e) {
+keyboard.up( function(note) {
   console.log(note);
 });
 ```
@@ -34,6 +35,7 @@ keyboard.up( function(note, e) {
 
 ##### TODO
 - [x] Get it working!
-- [ ] Implement octave shifting (for `rows=1`)
-- [ ] Implement velocity selection (for `rows=1`)
+- [x] Implement octave shifting (for `rows=1`)
+- [x] Implement velocity selection (for `rows=1`)
+- [ ] Demo site
 - [ ] Add MIDI support
