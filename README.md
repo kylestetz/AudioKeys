@@ -1,10 +1,6 @@
+<img src="https://raw.github.com/kylestetz/audiokeys/master/audiokeys.jpg" />
+
 # AudioKeys
-
-### In Development
-
-This doesn't work yet, but it will soon! Here's what it will do:
-
----------------------
 
 Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. AudioKeys provides intelligent handling of key events, giving you key up and key down events that you can use to trigger your sounds.
 
@@ -31,3 +27,11 @@ keyboard.up( function(note, e) {
   console.log(note);
 });
 ```
+
+------------------------------------
+
+##### TODO
+- [x] Get it working!
+- [ ] Implement octave shifting (for `rows=1`)
+- [ ] Implement velocity selection (for `rows=1`)
+- [ ] Add MIDI support
