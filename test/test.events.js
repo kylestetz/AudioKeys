@@ -60,6 +60,26 @@ describe('Events', function() {
       keyboard.down(verify);
       keyboard._trigger('down', true, true);
     });
+
+    it('should pass a note object through `up` and `down`', function() {
+      var keyboard = new AudioKeys({
+        rows: 1
+      });
+
+      function verify(note) {
+        assert.equal(note.note, 60);
+        assert.equal(note.velocity, 127);
+        assert.equal(note.keyCode, 65);
+        assert.equal(note.frequency, keyboard._toFrequency(60));
+      }
+
+      keyboard.down(verify);
+      keyboard.up(verify);
+
+      keyboard._addKey({ keyCode: 65 });
+      keyboard._removeKey({ keyCode: 65 });
+
+    });
   });
 
 });

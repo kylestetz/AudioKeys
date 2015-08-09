@@ -5,6 +5,7 @@ require('./test.events');
 require('./test.mapping');
 require('./test.buffer');
 require('./test.priority');
+require('./test.special');
 
 // functional test!
 require('./test.playing');

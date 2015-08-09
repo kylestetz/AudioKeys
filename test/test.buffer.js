@@ -14,7 +14,8 @@ describe('Buffers', function() {
         note: 60,
         keyCode: 65,
         frequency: keyboard._toFrequency(60),
-        isActive: true
+        isActive: true,
+        velocity: 127
       });
     });
 

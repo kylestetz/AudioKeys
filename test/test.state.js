@@ -19,11 +19,6 @@ describe('State', function() {
       assert.equal(keyboard._state.rows, 1);
     });
 
-    it('should have octave controls by default', function() {
-      var keyboard = new AudioKeys();
-      assert.equal(keyboard._state.octaves, true);
-    });
-
     it('should have a default priority of `last`', function() {
       var keyboard = new AudioKeys();
       assert.equal(keyboard._state.priority, 'last');
@@ -32,6 +27,16 @@ describe('State', function() {
     it('should have a default rootNote of 60', function() {
       var keyboard = new AudioKeys();
       assert.equal(keyboard._state.rootNote, 60);
+    });
+
+    it('should have octave controls by default', function() {
+      var keyboard = new AudioKeys();
+      assert.equal(keyboard._state.octaveControls, true);
+    });
+
+    it('should have velocity controls by default', function() {
+      var keyboard = new AudioKeys();
+      assert.equal(keyboard._state.velocityControls, true);
     });
 
   });
@@ -84,9 +89,12 @@ describe('State', function() {
 
       assert.equal(keyboard.get('polyphony'), 4);
       assert.equal(keyboard.get('rows'), 1);
-      assert.equal(keyboard.get('octaves'), true);
       assert.equal(keyboard.get('priority'), 'last');
       assert.equal(keyboard.get('rootNote'), 60);
+      assert.equal(keyboard.get('octaveControls'), true);
+      assert.equal(keyboard.get('velocityControls'), true);
+      assert.equal(keyboard.get('octave'), 0);
+      assert.equal(keyboard.get('velocity'), 127);
     });
 
     it('should accept an `options` object in the constructor', function() {
