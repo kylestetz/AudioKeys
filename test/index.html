@@ -4,7 +4,29 @@
   </head>
   <body>
     <script>
-      window.keyboard = new AudioKeys();
+
+      window.context  = new AudioContext();
+      window.keyboard = new AudioKeys({
+        polyphony: 2
+      });
+
+      var oscillators = {};
+
+      keyboard.down( function(note) {
+        var o = context.createOscillator();
+        o.frequency.value = note.frequency;
+        o.connect(context.destination);
+        o.start(0);
+        oscillators[note.note] = o;
+      });
+
+      keyboard.up( function(note) {
+        if(oscillators[note.note]) {
+          oscillators[note.note].stop(0);
+          delete oscillators[note.note];
+        }
+      });
+
     </script>
   </body>
 </html>

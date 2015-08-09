@@ -36,6 +36,19 @@ describe('Buffers', function() {
       assert.equal(keyboard._isPressed(65), true);
     });
 
+    it('should `clear` any active keys', function() {
+      var keyboard = new AudioKeys({
+        polyphony: 1
+      });
+
+      // simulated key event
+      keyboard._addKey({ keyCode: 65 });
+      keyboard._addKey({ keyCode: 87 });
+      keyboard.clear();
+      assert.strictEqual(keyboard._state.keys.length, 0);
+      assert.strictEqual(keyboard._state.buffer.length, 0);
+    });
+
   });
 
 });
