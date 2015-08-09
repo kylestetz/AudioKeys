@@ -78,7 +78,7 @@ AudioKeys.prototype._highest = function() {
 
 AudioKeys.prototype._lowest = function() {
   var self = this;
-  // get the highest notes and set them to active
+  // get the lowest notes and set them to active
   var notes = self._state.keys.map( function(key) {
     return key.note;
   });
