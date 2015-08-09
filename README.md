@@ -2,7 +2,7 @@
 
 # AudioKeys
 
-https://travis-ci.org/kylestetz/AudioKeys.svg
+[![Build Status](https://travis-ci.org/kylestetz/AudioKeys.svg)](https://travis-ci.org/kylestetz/AudioKeys)
 
 Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. AudioKeys provides intelligent handling of key events, giving you key up and key down events that you can use to trigger your sounds.
 
