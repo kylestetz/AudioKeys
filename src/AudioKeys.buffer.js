@@ -22,6 +22,8 @@ AudioKeys.prototype._addKey = function(e) {
     // reevaluate the active notes based on our priority rules.
     // give it the new note to use if there is an event to trigger.
     self._update();
+  } else if(self._isSpecialKey(e.keyCode)) {
+    self._specialKey(e.keyCode);
   }
 };
 
@@ -64,7 +66,8 @@ AudioKeys.prototype._makeNote = function(keyCode) {
   return {
     keyCode: keyCode,
     note: self._map(keyCode),
-    frequency: self._toFrequency( self._map(keyCode) )
+    frequency: self._toFrequency( self._map(keyCode) ),
+    velocity: self._state.velocity
   };
 };
 
@@ -134,10 +137,21 @@ AudioKeys.prototype._diff = function(oldBuffer) {
   });
 
   notesToAdd.forEach( function(key) {
-    self._trigger('down', self._makeNote(key));
+    for(var i = 0; i < self._state.buffer.length; i++) {
+      if(self._state.buffer[i].keyCode === key) {
+        self._trigger('down', self._state.buffer[i]);
+        break;
+      }
+    }
   });
 
   notesToRemove.forEach( function(key) {
-    self._trigger('up', self._makeNote(key));
+    // these need to fire the entire object
+    for(var i = 0; i < oldBuffer.length; i++) {
+      if(oldBuffer[i].keyCode === key) {
+        self._trigger('up', oldBuffer[i]);
+        break;
+      }
+    }
   });
 };

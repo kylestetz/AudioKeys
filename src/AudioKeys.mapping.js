@@ -4,7 +4,7 @@ AudioKeys.prototype._map = function(keyCode) {
 };
 
 AudioKeys.prototype._offset = function() {
-  return this._state.rootNote - this._keyMap[this._state.rows].root;
+  return this._state.rootNote - this._keyMap[this._state.rows].root + (this._state.octave * 12);
 };
 
 // _isNote determines whether a keyCode is a note or not.

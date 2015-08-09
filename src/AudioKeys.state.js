@@ -12,9 +12,12 @@ AudioKeys.prototype._setState = function(options) {
   self._extendState({
     polyphony: 4,
     rows: 1,
-    octaves: true,
     priority: 'last',
     rootNote: 60,
+    octaveControls: true,
+    octave: 0,
+    velocityControls: true,
+    velocity: 127,
     keys: [],
     buffer: []
   });
