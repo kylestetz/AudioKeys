@@ -9,7 +9,8 @@ gulp.task('build', function() {
       './src/AudioKeys.events.js',
       './src/AudioKeys.mapping.js',
       './src/AudioKeys.buffer.js',
-      './src/AudioKeys.priority.js'
+      './src/AudioKeys.priority.js',
+      './src/AudioKeys.special.js'
     ])
     .pipe(sourcemaps.init())
     .pipe(concat('audiokeys.js'))
