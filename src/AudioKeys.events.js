@@ -43,7 +43,22 @@ AudioKeys.prototype._bind = function() {
   var self = this;
 
   if(typeof window !== 'undefined' && window.document) {
-    window.document.addEventListener('keydown', self._addKey);
-    window.document.addEventListener('keyup', self._removeKey);
+    window.document.addEventListener('keydown', function(e) {
+      self._addKey(e);
+    });
+    window.document.addEventListener('keyup', function(e) {
+      self._removeKey(e);
+    });
+
+    var lastFocus = true;
+    setInterval( function() {
+      if(window.document.hasFocus() === lastFocus) {
+        return;
+      }
+      lastFocus = !lastFocus;
+      if(!lastFocus) {
+        self.clear();
+      }
+    }, 100);
   }
 };
