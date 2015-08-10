@@ -20,7 +20,7 @@ keyboard.down( function(note) {
 
 // a key was released
 keyboard.up( function(note) {
-  turn off your oscillators or samples here!
+  // turn off your oscillators or samples here!
 });
 ```
 
