@@ -57,7 +57,10 @@ describe('State', function() {
       assert.equal(keyboard._state.rows, 2);
 
       keyboard.set('octaveControls', false);
-      assert.equal(keyboard._state.octaves, false);
+      assert.equal(keyboard._state.octaveControls, false);
+
+      keyboard.set('velocityControls', false);
+      assert.equal(keyboard._state.velocityControls, false);
 
       keyboard.set('priority', 'first');
       assert.equal(keyboard._state.priority, 'first');
