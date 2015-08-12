@@ -64,13 +64,15 @@ These properties will be useful in setting up oscillators. See the [`test/index.
 There are several options that can be set to configure your keyboard object. They can be passed into the `AudioKeys` constructor in an object or set individually using `set`.
 
 ```javascript
+// properties can be passed into the AudioKeys object
 var keyboard = new AudioKeys({
   polyphony: 1,
   rows: 2,
   priority: 'lowest'
 });
 
-keyboard.set('')
+// all properties can also be set later
+keyboard.set('priority', 'highest');
 ```
 
 ##### `keyboard.set(property, value)`
