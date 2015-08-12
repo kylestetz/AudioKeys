@@ -61,18 +61,7 @@ These properties will be useful in setting up oscillators. See the [`test/index.
 
 ### API
 
-##### `keyboard.set(property, value)`
-##### `keyboard.get(property, value)`
-
-The state of the keyboard can be read and changed using the `set` and `get` methods. Here are the properties:
-
-- `polyphony` (int) - The number of keys that can be active simultaneously
-- `rows` (int) - Either `1` or `2`, see the diagrams above
-- `octaveControls` (boolean) - Determines whether or not the `z` and `x` keys shift octaves when `rows` is set to `1`
-- `priority` (string) - Determines the priority of the note triggers. Set this to `"last"`, `"first"`, `"highest"`, or `"lowest"`
-- `rootNote` (midi note) - Determines what note the lowest key on the keyboard will represent. The default is `60` (C4)
-
-These options can also be passed in when you create a new keyboard instance:
+There are several options that can be set to configure your keyboard object. They can be passed into the `AudioKeys` constructor in an object or set individually using `set`.
 
 ```javascript
 var keyboard = new AudioKeys({
@@ -80,7 +69,40 @@ var keyboard = new AudioKeys({
   rows: 2,
   priority: 'lowest'
 });
+
+keyboard.set('')
 ```
+
+##### `keyboard.set(property, value)`
+##### `keyboard.get(property, value)`
+
+The state of the keyboard can be read and changed using the `set` and `get` methods. Here are the properties:
+
+###### `polyphony`
+The number of keys that can be active simultaneously.
+
+###### `rows`
+Either `1` or `2`, see the diagrams above.
+
+###### `octaveControls`
+Determines whether or not the `z` and `x` keys shift octaves when `rows` is set to `1`.
+
+###### `velocityControls`
+Determines whether or not the number keys set the velocity of the notes being triggered. Keep in mind that velocity is just a number— you have to interpret it in your sounds!
+
+###### `priority`
+Determines the priority of the note triggers. Priority only takes effect when the number of keys being pressed down exceeds the polyphony (e.g. when the polyphony is 1 but a second key is pressed).
+
+- `"last"`: prefer the last note(s) pressed
+- `"first"`: prefer the first note(s) pressed
+- `"highest"`: prefer the highest note(s) pressed
+- `"lowest"`: prefer the lowest note(s) pressed
+
+For more on note priority, check out [this Sound on Sound article](http://www.soundonsound.com/sos/oct00/articles/synthsec.htm).
+
+###### `rootNote`
+Determines what note the lowest key on the keyboard will represent. The default is `60` (C4). Keep in mind that setting it to a note other than C (36, 48, 60, 72, 84, etc.) will result in the key mappings not lining up like a regular keyboard!
+
 
 ------------------------------------
 
