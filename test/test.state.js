@@ -56,7 +56,7 @@ describe('State', function() {
       keyboard.set('rows', 2);
       assert.equal(keyboard._state.rows, 2);
 
-      keyboard.set('octaves', false);
+      keyboard.set('octaveControls', false);
       assert.equal(keyboard._state.octaves, false);
 
       keyboard.set('priority', 'first');
@@ -72,14 +72,16 @@ describe('State', function() {
       keyboard.set({
         polyphony: 1,
         rows: 2,
-        octaves: false,
+        octaveControls: false,
+        velocityControls: false,
         priority: 'first',
         rootNote: 48
       });
 
       assert.equal(keyboard._state.polyphony, 1);
       assert.equal(keyboard._state.rows, 2);
-      assert.equal(keyboard._state.octaves, false);
+      assert.equal(keyboard._state.octaveControls, false);
+      assert.equal(keyboard._state.velocityControls, false);
       assert.equal(keyboard._state.priority, 'first');
       assert.equal(keyboard._state.rootNote, 48);
     });
@@ -101,14 +103,14 @@ describe('State', function() {
       var keyboard = new AudioKeys({
         polyphony: 1,
         rows: 2,
-        octaves: false,
+        octaveControls: false,
         priority: 'first',
         rootNote: 48
       });
 
       assert.equal(keyboard._state.polyphony, 1);
       assert.equal(keyboard._state.rows, 2);
-      assert.equal(keyboard._state.octaves, false);
+      assert.equal(keyboard._state.octaveControls, false);
       assert.equal(keyboard._state.priority, 'first');
       assert.equal(keyboard._state.rootNote, 48);
     });
