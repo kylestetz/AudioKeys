@@ -10,7 +10,7 @@ Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. Audio
 
 AudioKeys provides **configurable polyphony**— if you're making a monophonic synth, choose from the common note priorities "last note", "first note", "highest note", or "lowest note". It also handles odd situations like switching tabs— AudioKeys fires a note off event when your browser window goes out of focus.
 
-Choose from [two common key layouts](), one of which supports optional octave shifting and velocity selecting.
+Choose from two common key layouts, one of which supports optional octave shifting and velocity selecting.
 
 <img src="https://raw.github.com/kylestetz/audiokeys/master/images/audiokeys-mapping-rows1.jpg" />
 
