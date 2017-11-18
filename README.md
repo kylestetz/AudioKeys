@@ -18,14 +18,34 @@ Choose from two common key layouts, one of which supports optional octave shifti
 
 # Installation
 
-Download `dist/audiokeys.js` (or the minified version) and include it in the `<head>` of your markup:
+#### Using `npm`
+
+```bash
+$ npm install audiokeys --save
+```
+
+Use it in your project by requiring or importing it, depending on your build system.
+
+```javascript
+// Using `require`
+const AudioKeys = require('audiokeys');
+
+// Using `import`
+import AudioKeys from 'audiokeys';
+```
+
+#### Grab the source directly
+
+Download [`dist/audiokeys.js`](https://github.com/kylestetz/AudioKeys/blob/master/dist/audiokeys.js) or [`dist/audiokeys.min.js`](https://github.com/kylestetz/AudioKeys/blob/master/dist/audiokeys.min.js) and include it in the `<head>` of your markup:
 ```html
 <script src="/js/audiokeys.js"></script>
 ```
 
 Now you will have the `AudioKeys(options)` function available to use.
 
-### Basic Usage
+---
+
+# Usage
 
 ```javascript
 // create a keyboard
