@@ -1,24 +1,29 @@
 {
   "name": "audiokeys",
-  "version": "0.0.1",
-  "description": "A utility for creating QWERTY keyboards with support for different mono- and polyphonic behaviors.",
-  "main": "dist/audiokeys.js",
+  "version": "0.1.0",
+  "description": "A utility for creating QWERTY keyboards with support for different monophonic and polyphonic behaviors.",
+  "main": "src/AudioKeys.js",
   "scripts": {
     "test": "mocha test/test.js"
   },
   "keywords": [
-    "web",
+    "web audio",
     "audio",
+    "music",
     "qwerty",
     "keyboard",
-    "audio"
+    "music keyboard"
   ],
   "author": "Kyle Stetz",
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^14.5.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-minify": "0.0.15",
     "gulp-sourcemaps": "^1.5.2",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
