@@ -103,7 +103,7 @@ describe('Events', function() {
         assert.equal(note.velocity, 0);
       }
 
-      keyboard.down(verify);
+      keyboard.up(verify);
 
       keyboard._addKey({ keyCode: 65 });
       keyboard._removeKey({ keyCode: 65 });
