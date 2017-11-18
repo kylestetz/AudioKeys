@@ -1,5 +1,5 @@
 var assert = require('assert');
-var AudioKeys = require('../dist/audiokeys.js');
+var AudioKeys = require('../src/AudioKeys.js');
 
 describe('Events', function() {
 
@@ -68,7 +68,6 @@ describe('Events', function() {
 
       function verify(note) {
         assert.equal(note.note, 60);
-        assert.equal(note.velocity, 127);
         assert.equal(note.keyCode, 65);
         assert.equal(note.frequency, keyboard._toFrequency(60));
       }
@@ -78,7 +77,36 @@ describe('Events', function() {
 
       keyboard._addKey({ keyCode: 65 });
       keyboard._removeKey({ keyCode: 65 });
+    });
 
+    it('passes a velocity of 127 on note down', function() {
+      var keyboard = new AudioKeys({
+        rows: 1
+      });
+
+      function verify(note) {
+        assert.equal(note.velocity, 127);
+      }
+
+      keyboard.down(verify);
+
+      keyboard._addKey({ keyCode: 65 });
+      keyboard._removeKey({ keyCode: 65 });
+    });
+
+    it('passes a velocity of 0 on note up', function() {
+      var keyboard = new AudioKeys({
+        rows: 1
+      });
+
+      function verify(note) {
+        assert.equal(note.velocity, 0);
+      }
+
+      keyboard.down(verify);
+
+      keyboard._addKey({ keyCode: 65 });
+      keyboard._removeKey({ keyCode: 65 });
     });
   });
 

@@ -1,5 +1,5 @@
 var assert = require('assert');
-var AudioKeys = require('../dist/audiokeys.js');
+var AudioKeys = require('../src/AudioKeys.js');
 
 describe('Priority', function() {
 
