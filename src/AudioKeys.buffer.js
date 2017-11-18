@@ -78,6 +78,8 @@ module.exports = {
     // trigger note off for the notes in the buffer before
     // removing them.
     self._state.buffer.forEach( function(key) {
+      // note up events should have a velocity of 0
+      key.velocity = 0;
       self._trigger('up', key);
     });
     self._state.keys = [];
@@ -150,6 +152,8 @@ module.exports = {
       // these need to fire the entire object
       for(var i = 0; i < oldBuffer.length; i++) {
         if(oldBuffer[i].keyCode === key) {
+          // note up events should have a velocity of 0
+          oldBuffer[i].velocity = 0;
           self._trigger('up', oldBuffer[i]);
           break;
         }
