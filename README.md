@@ -52,7 +52,8 @@ The object you get back in a `down` or `up` callback includes:
   keyCode: 65,
   // the frequency of the note
   frequency: 261.6255653005986,
-  // the current velocity (this can only be set when rows = 1)
+  // on note down: the current velocity (this can only be set when rows = 1)
+  // on note up: 0
   velocity: 127
 }
 ```
