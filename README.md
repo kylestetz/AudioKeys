@@ -100,7 +100,7 @@ Determines the priority of the note triggers. Priority only takes effect when th
 - `"highest"`: prefer the highest note(s) pressed
 - `"lowest"`: prefer the lowest note(s) pressed
 
-For more on note priority, check out [this Sound on Sound article](http://www.soundonsound.com/sos/oct00/articles/synthsec.htm).
+For more on note priority, check out [this Sound on Sound article](https://web.archive.org/web/20150913012148/http://www.soundonsound.com/sos/oct00/articles/synthsec.htm).
 
 ###### `rootNote`
 Determines what note the lowest key on the keyboard will represent. The default is `60` (C4). Keep in mind that setting it to a note other than C (36, 48, 60, 72, 84, etc.) will result in the key mappings not lining up like a regular keyboard!
