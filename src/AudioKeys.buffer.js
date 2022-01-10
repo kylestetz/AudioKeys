@@ -13,28 +13,33 @@
 
 module.exports = {
   _addKey: function(e) {
+    const identifier = this._getIdentifier(e);
+
     var self = this;
-    // if the keyCode is one that can be mapped and isn't
+    // if the code is one that can be mapped and isn't
     // already pressed, add it to the key object.
-    if(self._isNote(e.keyCode) && !self._isPressed(e.keyCode)) {
-      var newKey = self._makeNote(e.keyCode);
+    if(self._isNote(identifier) && !self._isPressed(identifier)) {
+      var newKey = self._makeNote(identifier);
       // add the newKey to the list of keys
       self._state.keys = (self._state.keys || []).concat(newKey);
       // reevaluate the active notes based on our priority rules.
       // give it the new note to use if there is an event to trigger.
       self._update();
-    } else if(self._isSpecialKey(e.keyCode)) {
-      self._specialKey(e.keyCode);
+    } else if(self._isSpecialKey(identifier)) {
+      self._specialKey(identifier);
     }
   },
 
   _removeKey: function(e) {
+    const identifier = this._getIdentifier(e);
+
     var self = this;
-    // if the keyCode is active, remove it from the key object.
-    if(self._isPressed(e.keyCode)) {
+    // if the code is active, remove it from the key object.
+    if(self._isPressed(identifier)) {
       var keyToRemove;
-      for(var i = 0; i < self._state.keys.length; i++) {
-        if(self._state.keys[i].keyCode === e.keyCode) {
+      for (var i = 0; i < self._state.keys.length; i++) {
+        const other = self._getIdentifier(self._state.keys[i]);
+        if(other === identifier) {
           keyToRemove = self._state.keys[i];
           break;
         }
@@ -46,15 +51,16 @@ module.exports = {
     }
   },
 
-  _isPressed: function(keyCode) {
+  _isPressed: function(code) {
     var self = this;
 
     if(!self._state.keys || !self._state.keys.length) {
       return false;
     }
 
-    for(var i = 0; i < self._state.keys.length; i++) {
-      if(self._state.keys[i].keyCode === keyCode) {
+    for (var i = 0; i < self._state.keys.length; i++) {
+      const other = self._getIdentifier(self._state.keys[i]);
+      if(other === code) {
         return true;
       }
     }
@@ -62,14 +68,16 @@ module.exports = {
   },
 
   // turn a key object into a note object for the event listeners.
-  _makeNote: function(keyCode) {
+  _makeNote: function(code) {
     var self = this;
-    return {
-      keyCode: keyCode,
-      note: self._map(keyCode),
-      frequency: self._toFrequency( self._map(keyCode) ),
-      velocity: self._state.velocity
+    const note = {
+      note: self._map(code),
+      frequency: self._toFrequency(self._map(code)),
+      velocity: self._state.velocity,
     };
+    const identifier = self._state.layoutIndependentMapping ? 'code' : 'keyCode';
+    note[identifier] = code;
+    return note;
   },
 
   // clear any active notes
@@ -115,13 +123,9 @@ module.exports = {
     // if it's not in the OLD buffer, it's a note ON.
     // if it's not in the NEW buffer, it's a note OFF.
 
-    var oldNotes = oldBuffer.map( function(key) {
-      return key.keyCode;
-    });
+    var oldNotes = oldBuffer.map(self._getIdentifier.bind(self));
 
-    var newNotes = self._state.buffer.map( function(key) {
-      return key.keyCode;
-    });
+    var newNotes = self._state.buffer.map(self._getIdentifier.bind(self));
 
     // check for old (removed) notes
     var notesToRemove = [];
@@ -141,17 +145,19 @@ module.exports = {
 
     notesToAdd.forEach( function(key) {
       for(var i = 0; i < self._state.buffer.length; i++) {
-        if(self._state.buffer[i].keyCode === key) {
+        const other = self._getIdentifier(self._state.buffer[i]);
+        if(other === key) {
           self._trigger('down', self._state.buffer[i]);
           break;
         }
       }
     });
 
-    notesToRemove.forEach( function(key) {
+    notesToRemove.forEach(function(key) {
       // these need to fire the entire object
       for(var i = 0; i < oldBuffer.length; i++) {
-        if(oldBuffer[i].keyCode === key) {
+        const other = self._getIdentifier(oldBuffer[i]);
+        if(other === key) {
           // note up events should have a velocity of 0
           oldBuffer[i].velocity = 0;
           self._trigger('up', oldBuffer[i]);

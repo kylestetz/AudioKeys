@@ -30,6 +30,16 @@ describe('Mapping', function() {
       keyboard.set('rows', 2);
       // "z" (90) maps to 60
       assert.equal(keyboard._map(90), 60);
+
+      var keyboard = new AudioKeys({ layoutIndependentMapping: true });
+
+      keyboard.set('rows', 1);
+      // "a" maps to 60
+      assert.equal(keyboard._map('KeyA'), 60);
+
+      keyboard.set('rows', 2);
+      // "z" maps to 60
+      assert.equal(keyboard._map('KeyZ'), 60);
     });
 
     it('should determine if a keyCode corresponds to a note using `_isNote`', function() {
@@ -42,6 +52,16 @@ describe('Mapping', function() {
       keyboard.set('rows', 2);
       // "a" should not be a note now
       assert.equal(keyboard._isNote(65), false);
+
+      var keyboard = new AudioKeys({ layoutIndependentMapping: true });
+
+      keyboard.set('rows', 1);
+      // "a" maps to 60
+      assert.equal(keyboard._isNote('KeyA'), true);
+
+      keyboard.set('rows', 2);
+      // "a" should not be a note now
+      assert.equal(keyboard._isNote('KeyA'), false);
     });
 
     it('should return a note offset by the rootNote', function() {
@@ -50,6 +70,12 @@ describe('Mapping', function() {
       keyboard.set('rootNote', 72);
       keyboard.set('rows', 1);
       assert.equal(keyboard._map(65), 72);
+
+      var keyboard = new AudioKeys({ layoutIndependentMapping: true });
+
+      keyboard.set('rootNote', 72);
+      keyboard.set('rows', 1);
+      assert.equal(keyboard._map('KeyA'), 72);
     });
 
     it('should convert midi notes to frequency in Hz', function() {

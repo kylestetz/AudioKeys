@@ -6,7 +6,7 @@
 
 #### Bring your own sound.
 
-Use AudioKeys to power the QWERTY keyboard in your next Web Audio project. AudioKeys provides **intelligent handling of key events**, giving you key up and key down events that you can use to trigger your sounds.
+Use AudioKeys to power the typing keyboard in your next Web Audio project. AudioKeys provides **intelligent handling of key events**, giving you key up and key down events that you can use to trigger your sounds.
 
 AudioKeys provides **configurable polyphony**— if you're making a monophonic synth, choose from the common note priorities "last note", "first note", "highest note", or "lowest note". It also handles odd situations like switching tabs— AudioKeys fires a note off event when your browser window goes out of focus.
 
@@ -125,6 +125,12 @@ For more on note priority, check out [this Sound on Sound article](https://web.a
 
 ###### `rootNote`
 Determines what note the lowest key on the keyboard will represent. The default is `60` (C4). Keep in mind that setting it to a note other than C (36, 48, 60, 72, 84, etc.) will result in the key mappings not lining up like a regular keyboard!
+
+###### `layoutIndependentMapping`
+
+Whether to identify keyboardEvents using the keyboard layout-independent `e.code` instead of the (deprecated) QWERTY-only `e.keyCode`.
+`true` recommended.
+Default: `false` for backward-compatibility.
 
 
 ------------------------------------

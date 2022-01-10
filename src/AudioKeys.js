@@ -12,6 +12,9 @@ function AudioKeys(options) {
   var self = this;
 
   self._setState(options);
+  // initialize key mapping according to keyIdentifier used
+  self._keyMap = self._getKeyMap(self._state.layoutIndependentMapping);
+  self._specialKeyMap = self._getSpecialKeyMap(self._state.layoutIndependentMapping);
 
   // all listeners are stored in arrays in their respective properties.
   // e.g. self._listeners.down = [fn1, fn2, ... ]
@@ -38,7 +41,8 @@ AudioKeys.prototype._map = mapping._map;
 AudioKeys.prototype._offset = mapping._offset;
 AudioKeys.prototype._isNote = mapping._isNote;
 AudioKeys.prototype._toFrequency = mapping._toFrequency;
-AudioKeys.prototype._keyMap = mapping._keyMap;
+AudioKeys.prototype._getIdentifier = mapping._getIdentifier;
+AudioKeys.prototype._getKeyMap = mapping._getKeyMap;
 
 // buffer
 AudioKeys.prototype._addKey = buffer._addKey;
@@ -59,7 +63,7 @@ AudioKeys.prototype._lowest = priority._lowest;
 // special
 AudioKeys.prototype._isSpecialKey = special._isSpecialKey;
 AudioKeys.prototype._specialKey = special._specialKey;
-AudioKeys.prototype._specialKeyMap = special._specialKeyMap;
+AudioKeys.prototype._getSpecialKeyMap = special._getSpecialKeyMap;
 
 // Browserify will take care of making this a global
 // in a browser environment without a build system.
