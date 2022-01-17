@@ -64,3 +64,4 @@ AudioKeys.prototype._specialKeyMap = special._specialKeyMap;
 // Browserify will take care of making this a global
 // in a browser environment without a build system.
 module.exports = AudioKeys;
+module.exports.AudioKeys = AudioKeys;
