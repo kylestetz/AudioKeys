@@ -1,14 +1,14 @@
 {
   "name": "audiokeys",
-  "version": "0.1.1",
-  "description": "A utility for creating QWERTY keyboards with support for different monophonic and polyphonic behaviors.",
+  "version": "0.2.0",
+  "description": "A utility for turning typing keyboards into musical keyboards with support for different monophonic and polyphonic behaviors.",
   "main": "src/AudioKeys.js",
   "scripts": {
     "test": "mocha test/test.js"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/kylestetz/AudioKeys.git"
+    "type": "git",
+    "url": "https://github.com/kylestetz/AudioKeys.git"
   },
   "keywords": [
     "web audio",

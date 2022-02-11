@@ -20,7 +20,8 @@ module.exports = {
       velocityControls: true,
       velocity: 127,
       keys: [],
-      buffer: []
+      buffer: [],
+      layoutIndependentMapping: false
     });
 
     // ... and override them with options.
