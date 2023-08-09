@@ -17,7 +17,7 @@ interface AudioKeysNoteData {
 
 declare module 'audiokeys' {
   export default class AudioKeysDefault {
-    constructor(options: Partial<AudioKeysOptions>)
+    constructor(options?: Partial<AudioKeysOptions>)
     up(callback: (note: AudioKeysNoteData) => void): void
     down(callback: (note: AudioKeysNoteData) => void): void
     clear: () => void
